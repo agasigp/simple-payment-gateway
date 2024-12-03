@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('deposits', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
             $table->char('order_id', 6);
             $table->decimal('amount', 11, 2);
-            $table->timestamp('timestamp', precision: 0);
+            $table->unsignedBigInteger('timestamp');
             $table->timestamps();
         });
     }

@@ -17,5 +17,9 @@ class DatabaseSeeder extends Seeder
             'name' => 'Agasi Gilang Persada',
             'email' => 'agasigp@live.com',
         ]);
+
+        $this->call([
+            DepositSeeder::class,
+        ]);
     }
 }
