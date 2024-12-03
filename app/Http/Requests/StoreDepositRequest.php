@@ -34,7 +34,16 @@ class StoreDepositRequest extends FormRequest
                     }
                 },
             ],
-            'timestamp' => ['required', 'date_format:Y-m-d H:i:s',]
+            'timestamp' => [
+                'required',
+                'integer',
+                'min:0',
+                function (string $attribute, mixed $value, Closure $fail) {
+                    if (!preg_match('/^\d{10}$/', $value)) {
+                        $fail('The ' . $attribute . ' must be a valid 10-digit UNIX timestamp.');
+                    }
+                },
+            ],
         ];
     }
 }

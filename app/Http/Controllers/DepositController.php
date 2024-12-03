@@ -28,7 +28,11 @@ class DepositController extends Controller
         }
 
         DB::transaction(function () use ($user, $request) {
-            Deposit::query()->create($request->validated());
+            $deposit = new Deposit();
+            $deposit->fill($request->validated());
+            $deposit->user_id = $user->id;
+            $deposit->save();
+            // Deposit::query()->create($request->validated());
             $user->balance = $user->balance + $request->amount;
             $user->save();
         });
