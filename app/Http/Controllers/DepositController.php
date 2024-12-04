@@ -41,6 +41,6 @@ class DepositController extends Controller
             'order_id' => $request->order_id,
             'amount' => $request->amount,
             'status' => 1,
-        ]);
+        ], 201);
     }
 }
